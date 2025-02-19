@@ -1,7 +1,5 @@
 # Deploy-ONNX-model
-## 1. Download image from NVidia
-`docker pull nvcr.io/nvidia/tritonserver:<22.11>-py3-sdk`
-## 2. Directory Structure
+## 1. Directory Structure
 ```
 model_repository/
 │── classify_cat_dog_onnx/     # Model name
@@ -10,7 +8,7 @@ model_repository/
 │   ├── config.pbtxt           # Triton config file
 ```
 
-## 3. Launch Triton Inference server
+## 2. Launch Triton Inference server
 `docker run --rm -p 8000:8000 -p 8001:8001 -p 8002:8002 -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:22.11-py3 tritonserver --model-repository=/models`
 
 OUTPUT:
@@ -26,14 +24,14 @@ I0219 14:15:16.504751 1 grpc_server.cc:4819] Started GRPCInferenceService at 0.0
 I0219 14:15:16.505880 1 http_server.cc:3477] Started HTTPService at 0.0.0.0:8000
 I0219 14:15:16.549719 1 http_server.cc:184] Started Metrics Service at 0.0.0.0:8002
 ```
-## 4. Check Server Status
+## 3. Check Server Status
 `curl.exe -v localhost:8000/v2/health/ready`
 
 OUTPUT
 ```
 curl -v localhost:8000/v2/health/ready
 ```
-## 5. Using a Triton Client to Query the Server
+## 4. Using a Triton Client to Query the Server
 `test.ipynb`
 
 ```
@@ -65,15 +63,15 @@ inference_output = results.as_numpy('fc6_1').astype(str)
 
 print(np.squeeze(inference_output)[:5])
 ```
-## 6. Triton Performance Analyzer
-### 6.1 Start the Triton SDK container
+## 5. Triton Performance Analyzer
+### 5.1 Start the Triton SDK container
 ```
 docker run --rm -it --net host nvcr.io/nvidia/tritonserver:22.11-py3-sdk
 ```
-### 6.2 Run the Perf Analyzer
+### 5.2 Run the Perf Analyzer
 `perf_analyzer -m densenet_onnx`
 
-#### 6.2.1 Config 1
+#### 5.2.1 Config 1
 File config.pbtxt
 ```
 name: "densenet_onnx"
@@ -127,7 +125,7 @@ Request concurrency: 1
 Inferences/Second vs. Client Average Batch Latency
 Concurrency: 1, throughput: 16.3814 infer/sec, latency 60912 usec
 ```
-#### 6.2.2 Config 2
+#### 5.2.2 Config 2
 File config.pbtxt
 ```
 name: "densenet_onnx"
@@ -197,7 +195,7 @@ Request concurrency: 1
 Inferences/Second vs. Client Average Batch Latency
 Concurrency: 1, throughput: 27.1281 infer/sec, latency 36786 usec
 ```
-### 6.3 Compare output
+### 5.3 Compare output
 
 | Metric                   | **Config 1**              | **Config 2**              |
 |--------------------------|---------------------------|---------------------------|
