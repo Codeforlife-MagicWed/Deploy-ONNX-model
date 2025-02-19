@@ -72,7 +72,7 @@ docker run --rm -it --net host nvcr.io/nvidia/tritonserver:22.11-py3-sdk
 `perf_analyzer -m densenet_onnx`
 
 #### 6.2.1 Config 1
-config.pbtxt
+File config.pbtxt
 ```
 name: "densenet_onnx"
 platform: "onnxruntime_onnx"
@@ -126,7 +126,7 @@ Inferences/Second vs. Client Average Batch Latency
 Concurrency: 1, throughput: 16.3814 infer/sec, latency 60912 usec
 ```
 #### 6.2.2 Config 2
-config.pbtxt
+File config.pbtxt
 ```
 name: "densenet_onnx"
 platform: "onnxruntime_onnx"
@@ -166,6 +166,7 @@ optimization {
 }
 ```
 
+OUTPUT:
 ```
 *** Measurement Settings ***
   Batch size: 1
