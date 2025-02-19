@@ -1,5 +1,5 @@
 # Deploy-ONNX-model
-## 1. Down image from NVidia
+## 1. Download image from NVidia
 `docker pull nvcr.io/nvidia/tritonserver:<22.11>-py3-sdk`
 ## 2. Directory Structure
 ```
@@ -43,4 +43,9 @@ results = client.infer(model_name="densenet_onnx", inputs=[inputs], outputs=[out
 inference_output = results.as_numpy('fc6_1').astype(str)
 
 print(np.squeeze(inference_output)[:5])
+```
+## 5. Triton Performance Analyzer
+### 5.1 Start Triton Container
+```
+ docker pull nvcr.io/nvidia/tritonserver:22.11-py3-sdk
 ```
