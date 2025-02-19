@@ -10,11 +10,29 @@ model_repository/
 │   ├── config.pbtxt           # Triton config file
 ```
 
-## 2. Launch Triton Inference server
-` docker run --rm -p 8000:8000 -p 8001:8001 -p 8002:8002 -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:22.11-py3 tritonserver --model-repository=/models`
-## 3. Check Server Status
-`curl -v localhost:8000/v2/health/ready`
-## 4. Using a Triton Client to Query the Server
+## 3. Launch Triton Inference server
+`docker run --rm -p 8000:8000 -p 8001:8001 -p 8002:8002 -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:22.11-py3 tritonserver --model-repository=/models`
+Output:
+```
+I0219 14:15:16.486384 1 server.cc:633]
++---------------+---------+--------+
+| Model         | Version | Status |
++---------------+---------+--------+
+| densenet_onnx | 1       | READY  |
++---------------+---------+--------+
+...
+I0219 14:15:16.504751 1 grpc_server.cc:4819] Started GRPCInferenceService at 0.0.0.0:8001
+I0219 14:15:16.505880 1 http_server.cc:3477] Started HTTPService at 0.0.0.0:8000
+I0219 14:15:16.549719 1 http_server.cc:184] Started Metrics Service at 0.0.0.0:8002
+```
+## 4. Check Server Status
+`curl.exe -v localhost:8000/v2/health/ready`
+
+Output
+```
+curl -v localhost:8000/v2/health/ready
+```
+## 5. Using a Triton Client to Query the Server
 ```
 import tritonclient.http as httpclient
 
@@ -44,8 +62,8 @@ inference_output = results.as_numpy('fc6_1').astype(str)
 
 print(np.squeeze(inference_output)[:5])
 ```
-## 5. Triton Performance Analyzer
-### 5.1 Start Triton Container
+## 6. Triton Performance Analyzer
+### 6.1 Start Triton Container
 ```
  docker pull nvcr.io/nvidia/tritonserver:22.11-py3-sdk
 ```
