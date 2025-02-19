@@ -34,6 +34,8 @@ OUTPUT
 curl -v localhost:8000/v2/health/ready
 ```
 ## 5. Using a Triton Client to Query the Server
+`test.ipynb`
+
 ```
 import tritonclient.http as httpclient
 
