@@ -197,13 +197,15 @@ Concurrency: 1, throughput: 27.1281 infer/sec, latency 36786 usec
 ```
 ### 6.3 Compare output
 
-| Metric              | **Config 1**         | **Config 2**         |
-|---------------------|----------------------|----------------------|
-| **Throughput**      | **16.38 infer/sec**  | **27.13 infer/sec**  | 
-| **Avg Latency**     | **60.91 ms**         | **36.79 ms**         | 
-| **p50 Latency**     | **59.26 ms**         | **36.71 ms**         | 
-| **p90 Latency**     | **73.49 ms**         | **40.15 ms**         | 
-| **p95 Latency**     | **81.82 ms**         | **40.87 ms**         | 
-| **p99 Latency**     | **85.62 ms**         | **42.38 ms**         | 
-| **Compute Infer**   | **59.54 ms**         | **35.28 ms**         | 
+| Metric                   | **Config 1**              | **Config 2**              |
+|--------------------------|---------------------------|---------------------------|
+| **Throughput**           | **16.38 infer/sec**       | **27.13 infer/sec**       | 
+| **Avg Latency**          | **60.91 ms**              | **36.79 ms**              | 
+| **p50 Latency**          | **59.26 ms**              | **36.71 ms**              | 
+| **p90 Latency**          | **73.49 ms**              | **40.15 ms**              | 
+| **p95 Latency**          | **81.82 ms**              | **40.87 ms**              | 
+| **p99 Latency**          | **85.62 ms**              | **42.38 ms**              | 
+| **Compute Infer**        | **59.54 ms**              | **35.28 ms**              | 
 
+##### Conclusion:
+Config 2 is faster because it enables TensorRT acceleration, which significantly improves model inference speed on supported hardware.
