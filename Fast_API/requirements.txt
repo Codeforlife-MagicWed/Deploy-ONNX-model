@@ -1,5 +1,0 @@
-fastapi
-pydantic
-numpy
-tritonclient[http]
-uvicorn[standard]
